@@ -65,9 +65,16 @@ con  %f de float nos imprime todos los decimales pero como solo queremos 2 solo 
 ## Memoria del disco
 
 Para ver el estado de memoria del disco usamos el comando df
-![image](https://github.com/nakamavg/Born2beroot/assets/7202262/2c850542-c67f-4142-9987-716f8d551d02)
 
 
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/ecf40f75-c37b-4f7f-a6b1-e956fd80d193)
+
+Para que nos muestre solo las lineas que queremos /dev/ y nos excluya las lineas que contengan /boot
+usamos grep para filtrar lo que queremos y grep -v para que no nos incluya esas lineas 
+
+`df -m | grep "/dev/" | grep -v "/boot"`
+
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/7b6ec911-cf44-49cf-b08e-494fdace8c30)
 
 
 
