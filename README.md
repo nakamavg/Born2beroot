@@ -136,6 +136,65 @@ como solo queremos el valor 15 hacemos por tuberia
 ` vmstat | tail -1 | awk '{print $15}'`
 ![image](https://github.com/nakamavg/Born2beroot/assets/7202262/d764fe91-e90d-4255-86bf-9f35282b68f0)
 
+### ultimo reinicio 
+
+comando `who -b`
+
+nos muestra mas de lo que queremos como solo queremos la fecha tenemos que hacer un awk
+
+`who -b | awk '$1 == "system" {print $3 " " $4}'`
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/cba8af26-adad-4670-8dc4-20a0b29bd23d)
+
+### uso lvm
+En el subject nos piden que pongamos yes or no dependiendo de si lvm esta activo
+para ello vamos a seguir usando los comandos aprendidos hasta ahora.
+
+comando lsblk
+
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/8cb95a54-d93b-4542-9cac-4ffb2f23608e)
+Nos muestra una lista jerarquica de discos duros particiones tamaño y puntos de montaje
+
+como queremos saber si hay lvm
+
+lsblk | grep "lvm" | wc -l esto nos vas a contar el numero de lineas al buscar con grep lvm 
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/d2930c88-2e62-4982-96e3-06d22cc4ec8a)
+
+ahora necesitamos que nos ponga yes or no dependiendo de si encuentra lineas con el grep
+
+ `if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi`
+
+ Metemos dentro del if entre corchetes el comando anterior y le metemos `- gt 0` para validar que haya mas lineas que 0
+ dependiendo de el resultado de la validacion nos hace un echo , y para terminar el if debemos poner fi
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/787c5b22-4ff0-45cf-801e-cd528fcee716)
+
+### Conexiones TCP
+
+Para mirar el numero de conexiones TCP establecidadas usaremos:
+
+`ss -ta | grep ESTAB | wc -l `
+
+Esto nos contara el numero de lineas ESTAB
+lo que nos devolvera el numero de conexiones
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/549b02ba-7cc5-4009-8ac5-7d9b76fec70b)
+
+### Numero de usuarios
+users | wc -w
+
+### Dirección IP y mac 
+
+comandos
+hostname -I (devuelve ip)
+ip link( devuelve mucho texto y la mac addres)
+Para dejarlo bonito debemos hacer un grep de "link/ether" pasarselo por pipe a awk e imprimir solamente la segunda palabra 
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/24bee760-85df-450a-a055-190f085d7b5b)
+
+### numero de comandos ejecutados con sudo
+
+journalctl _COMM=sudo | grep COMMAND | wc -l)
+
+
+
+
 
 
 
