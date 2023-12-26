@@ -62,6 +62,11 @@ con  %f de float nos imprime todos los decimales pero como solo queremos 2 solo 
  free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}'
 (10.96%)
 ```
+## Memoria del disco
+
+Para ver el estado de memoria del disco usamos el comando df
+![image](https://github.com/nakamavg/Born2beroot/assets/7202262/2c850542-c67f-4142-9987-716f8d551d02)
+
 
 
 
